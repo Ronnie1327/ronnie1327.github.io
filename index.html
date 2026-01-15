@@ -9,28 +9,37 @@
   <style>
     body {
       margin: 0;
-      padding: 0;
       background: white;
-      text-align: center;
       font-family: 'Montserrat', sans-serif;
+      text-align: center;
     }
 
     h1 {
       font-size: 72px;
-      margin-top: 30px;
-      margin-bottom: 20px;
-      letter-spacing: 2px;
+      margin: 30px 0 10px;
     }
 
-    .map-container {
+    #container {
       display: flex;
       justify-content: center;
-      align-items: center;
+      gap: 30px;
+      padding: 20px;
     }
 
-    .map-container img {
-      width: 1200px;
-      max-width: 95%;
+    #map {
+      width: 1000px;
+    }
+
+    #info {
+      width: 320px;
+      border: 2px solid black;
+      padding: 15px;
+      text-align: left;
+    }
+
+    .st1:hover {
+      fill: #444 !important;
+      cursor: pointer;
     }
   </style>
 </head>
@@ -39,9 +48,40 @@
 
   <h1>Geo Game Info</h1>
 
-  <div class="map-container">
-    <img src="24440110_untitled_012319 [Przekonwertowany] kopia.svg">
+  <div id="container">
+
+    <div id="map">
+      <object type="image/svg+xml" data="world_map_vectorized.svg" id="svgMap"></object>
+    </div>
+
+    <div id="info">
+      <strong>Kliknij kraj</strong><br><br>
+      Tu pojawią się informacje.
+    </div>
+
   </div>
+
+  <script>
+    const svgObject = document.getElementById("svgMap");
+
+    svgObject.addEventListener("load", () => {
+      const svgDoc = svgObject.contentDocument;
+      const countries = svgDoc.querySelectorAll(".st1");
+
+      countries.forEach(country => {
+        country.addEventListener("click", () => {
+          document.getElementById("info").innerHTML = `
+            <strong>Wybrany kraj</strong><br><br>
+            Ludność: —<br>
+            Ruch: —<br>
+            Ustrój: —<br>
+            Władca: —<br>
+            Waluta: —
+          `;
+        });
+      });
+    });
+  </script>
 
 </body>
 </html>
