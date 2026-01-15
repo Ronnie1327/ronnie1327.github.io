@@ -7,20 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
 
   <style>
-  .st1 {
-  pointer-events: all;
-  fill: black;
-  stroke: none;
-}
-
-#map {
-  position: relative;
-  z-index: 1;
-}
-
-svg {
-  pointer-events: all;
-}
+  
   body {
       margin: 0;
       background: white;
@@ -70,6 +57,20 @@ svg {
     .st1:hover {
       fill: #222 !important;
     }
+.st1 {
+  pointer-events: all;
+  fill: black;
+  stroke: none;
+}
+
+#map {
+  position: relative;
+  z-index: 1;
+}
+
+svg {
+  pointer-events: all;
+}
   </style>
 </head>
 
@@ -425,72 +426,23 @@ svg {
       });
     });
 <script>
-  window.addEventListener("load", () => {
+window.addEventListener("load", () => {
+  const paths = document.querySelectorAll(".st1");
+  console.log("Znalezione path:", paths.length);
 
-    const countryData = {
-      0: {
-        name: "Polska",
-        population: "38 mln",
-        traffic: "prawostronny",
-        system: "republika",
-        leader: "Prezydent",
-        currency: "złoty"
-      },
-      1: {
-        name: "Niemcy",
-        population: "83 mln",
-        traffic: "prawostronny",
-        system: "republika",
-        leader: "Kanclerz",
-        currency: "euro"
-      },
-      2: {
-        name: "Wielka Brytania",
-        population: "67 mln",
-        traffic: "lewostronny",
-        system: "monarchia",
-        leader: "Król",
-        currency: "funt"
-      },
-      3: {
-        name: "USA",
-        population: "331 mln",
-        traffic: "prawostronny",
-        system: "republika",
-        leader: "Prezydent",
-        currency: "dolar"
-      }
-    };
-
-    const countries = document.querySelectorAll(".st1");
-
-    console.log("Znalezione kraje:", countries.length);
-
-    countries.forEach((country, index) => {
-      country.addEventListener("click", () => {
-        const data = countryData[index];
-
-        // reset koloru
-        countries.forEach(c => c.style.fill = "");
-        country.style.fill = "#000";
-
-        if (data) {
-          document.getElementById("info").innerHTML = `
-            <strong>${data.name}</strong><br><br>
-            Ludność: ${data.population}<br>
-            Ruch: ${data.traffic}<br>
-            Ustrój: ${data.system}<br>
-            Władca: ${data.leader}<br>
-            Waluta: ${data.currency}
-          `;
-        } else {
-          document.getElementById("info").innerHTML = `
-            <strong>Nieprzypisany kraj</strong><br><br>
-            Ten kraj nie ma jeszcze danych.
-          `;
-        }
-      });
+  paths.forEach(path => {
+    path.addEventListener("mouseenter", () => {
+      path.style.fill = "red";
+      document.getElementById("info").innerText = "WYKRYTO KRAJ";
     });
 
+    path.addEventListener("mouseleave", () => {
+      path.style.fill = "black";
+    });
+
+    path.addEventListener("click", () => {
+      document.getElementById("info").innerText = "KLIK DZIAŁA";
+    });
   });
+});
 </script>
