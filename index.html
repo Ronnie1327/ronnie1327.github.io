@@ -83,18 +83,23 @@ svg {
     <div id="map">
 
 <?xml version="1.0" encoding="UTF-8"?>
-<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 7000 7000">
+<svg id="Layer_1"
+     xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 7000 7000"
+     style="pointer-events: all;">
+
   <!-- Generator: Adobe Illustrator 30.1.0, SVG Export Plug-In . SVG Version: 2.1.1 Build 136)  -->
   <defs>
-    <style>
-      .st0 {
-        fill: #fff;
-      }
+  .st1 {
+  fill: #555;
+  cursor: pointer;
+  pointer-events: all;
+}
 
-      .st1 {
-        fill: #555;
-      }
-    </style>
+.st1:hover {
+  fill: red;
+}
+
   </defs>
   <rect class="st0" y="1500" width="7000" height="4000"/>
   <path class="st1" d="M3658.17,4363.39c5.45-.36,9.61-.84,9.61-3.48v-62.29l.98-.08c.13,0,13.14-1.04,16.7-2.07.96-.27,2.71-1.01,4.73-1.86,7.65-3.22,13.71-5.56,16.25-3.81,1.22.8,2.52,2.26,3.78,3.67,1.28,1.43,3.2,3.57,4.06,3.57.04,0,.08.04.25-.17,1.12-1.39,7.02-8.33,13.53-8.33,2.41,0,6.38-.96,10.21-1.88l.18-.05h0s.05-.02.05-.02c-.07-.15-.04-.24-.11-.39-.49-1.13-.82-2.17-.82-3.02-1.28-1.61-16.83-.4-31.37,2.54-2.22.46-3.92.86-4.77,1.14-.5.17-1.19.36-1.96.55-.33.08-.68.17-1.05.25-.51.12-1.05.23-1.62.35-.45.09-.86.18-1.34.28-.95.18-1.96.36-3.01.52-.47.07-.93.14-1.42.21-.83.12-1.66.23-2.51.32-.42.05-.83.1-1.26.14-1.25.13-2.49.23-3.72.29-.24.01-.46.01-.7.02-.67.03-1.34.06-1.98.06-.22,0-.39-.04-.61-.04-1-.02-1.92-.09-2.82-.18-.45-.05-.92-.07-1.33-.14-1.24-.2-2.35-.48-3.19-.9-4.19-2.11-29.4-.63-38.77.11l-.49.03-6.29-6.3h-61.24c-6,0-10.88-.77-16.68-4.62-4.84-3.22-9.75-3.48-15.98-.83-4.11,1.74-5.37.09-6.31-1.77-.57-1.15-.91-1.71-2.14-1.71-3.71,0-5.26,3.78-5.27,3.81l-.2.5-5.36,1.4c-.06,4.91,3.99,13.91,9.91,21.91,6.24,8.42,13.64,23.88,17.6,36.78,2.07,6.75,6.15,13.87,10.08,20.76,3.47,6.07,6.76,11.8,8.15,16.53,1.55,5.19.95,11.54.41,17.13-.49,5.15-.95,10.01.34,12.85,3.07,6.69,4.93,18.11,6.44,28.29.27,1.87.51,4.08.79,6.52,1.28,11.39,3.21,28.6,11.05,36.22,3.52,3.43,7.31,8.27,10.99,14.03l.3.03c2.34.24,4.76.47,5.44-.14.07-.06.23-.21.23-.74,0-2.74,2.79-6.92,6.27-8.01,1.29-.42,2.51-.28,3.61.28.15.08.29.16.44.26.61.4,1.18.89,1.67,1.59,1.38,1.96,2.07,4.17,2.68,6.13,1.25,4.01,2.08,6.1,5.96,6.1,2.31,0,5.08.24,8.01.5,5.37.47,12.71,1.11,13.84-.56.88-1.34,2.65-2.45,4.71-3.73,3.15-1.97,6.73-4.2,6.73-7.31v-117.87c0-2.85,3.87-3.1,8.36-3.39Z"/>
@@ -410,22 +415,28 @@ svg {
 
   </div>
 
-  <script>
-    const countries = document.querySelectorAll(".st1");
-
-    countries.forEach(country => {
-      country.addEventListener("click", () => {
-        document.getElementById("info").innerHTML = `
-          <strong>Wybrany kraj</strong><br><br>
-          Ludność: —<br>
-          Ruch: —<br>
-          Ustrój: —<br>
-          Władca: —<br>
-          Waluta: —
-        `;
-      });
-    });
 <script>
+window.addEventListener("load", () => {
+  const paths = document.querySelectorAll(".st1");
+  console.log("Znalezione path:", paths.length);
+
+  paths.forEach(path => {
+    path.addEventListener("mouseenter", () => {
+      path.style.fill = "red";
+      document.getElementById("info").innerText = "NAJECHAŁEŚ NA KRAJ";
+    });
+
+    path.addEventListener("mouseleave", () => {
+      path.style.fill = "#555";
+    });
+
+    path.addEventListener("click", () => {
+      document.getElementById("info").innerText = "KLIK DZIAŁA";
+    });
+  });
+});
+</script>
+
 window.addEventListener("load", () => {
   const paths = document.querySelectorAll("path");
   alert("Znalezione path: " + paths.length);
