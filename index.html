@@ -410,7 +410,72 @@
         `;
       });
     });
-  </script>
+ <script>
+  // DANE KRAJÓW
+  const countryData = {
+    0: {
+      name: "Polska",
+      population: "38 mln",
+      traffic: "prawostronny",
+      system: "republika",
+      leader: "Prezydent",
+      currency: "złoty"
+    },
+    1: {
+      name: "Niemcy",
+      population: "83 mln",
+      traffic: "prawostronny",
+      system: "republika",
+      leader: "Kanclerz",
+      currency: "euro"
+    },
+    2: {
+      name: "Wielka Brytania",
+      population: "67 mln",
+      traffic: "lewostronny",
+      system: "monarchia",
+      leader: "Król",
+      currency: "funt"
+    },
+    3: {
+      name: "USA",
+      population: "331 mln",
+      traffic: "prawostronny",
+      system: "republika",
+      leader: "Prezydent",
+      currency: "dolar"
+    }
+  };
 
-</body>
-</html>
+  const countries = document.querySelectorAll(".st1");
+
+  countries.forEach((country, index) => {
+
+    country.addEventListener("click", () => {
+      const data = countryData[index];
+
+      // reset koloru wszystkich
+      countries.forEach(c => c.style.fill = "");
+
+      // podświetlenie klikniętego
+      country.style.fill = "#000";
+
+      if (data) {
+        document.getElementById("info").innerHTML = `
+          <strong>${data.name}</strong><br><br>
+          Ludność: ${data.population}<br>
+          Ruch: ${data.traffic}<br>
+          Ustrój: ${data.system}<br>
+          Władca: ${data.leader}<br>
+          Waluta: ${data.currency}
+        `;
+      } else {
+        document.getElementById("info").innerHTML = `
+          <strong>Nieprzypisany kraj</strong><br><br>
+          Ten kraj nie ma jeszcze danych.
+        `;
+      }
+    });
+
+  });
+</script>
