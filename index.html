@@ -427,22 +427,7 @@ svg {
     });
 <script>
 window.addEventListener("load", () => {
-  const paths = document.querySelectorAll(".st1");
-  console.log("Znalezione path:", paths.length);
-
-  paths.forEach(path => {
-    path.addEventListener("mouseenter", () => {
-      path.style.fill = "red";
-      document.getElementById("info").innerText = "WYKRYTO KRAJ";
-    });
-
-    path.addEventListener("mouseleave", () => {
-      path.style.fill = "black";
-    });
-
-    path.addEventListener("click", () => {
-      document.getElementById("info").innerText = "KLIK DZIAŁA";
-    });
-  });
+  const paths = document.querySelectorAll("path");
+  alert("Znalezione path: " + paths.length);
 });
 </script>
