@@ -17,17 +17,20 @@
     h1 {
       font-size: 72px;
       margin: 30px 0 10px;
+      letter-spacing: 2px;
     }
 
     #container {
       display: flex;
       justify-content: center;
+      align-items: flex-start;
       gap: 30px;
       padding: 20px;
     }
 
     #map {
-      width: 1000px;
+      width: 1100px;
+      max-width: 100%;
     }
 
     #info {
@@ -35,10 +38,17 @@
       border: 2px solid black;
       padding: 15px;
       text-align: left;
+      font-size: 16px;
     }
 
+    /* zapobiega przeciąganiu */
+    svg {
+      user-select: none;
+    }
+
+    /* reakcja na hover */
     .st1:hover {
-      fill: #444 !important;
+      fill: #333 !important;
       cursor: pointer;
     }
   </style>
@@ -51,7 +61,11 @@
   <div id="container">
 
     <div id="map">
-      <object type="image/svg+xml" data="world_map_vectorized.svg" id="svgMap"></object>
+
+      <!-- ====== TU WKLEJASZ CAŁY KOD SVG MAPY ====== -->
+      <!-- od <svg ...> aż do </svg> -->
+      <!-- NIC INNEGO TU NIE MA -->
+
     </div>
 
     <div id="info">
@@ -62,23 +76,18 @@
   </div>
 
   <script>
-    const svgObject = document.getElementById("svgMap");
+    const countries = document.querySelectorAll(".st1");
 
-    svgObject.addEventListener("load", () => {
-      const svgDoc = svgObject.contentDocument;
-      const countries = svgDoc.querySelectorAll(".st1");
-
-      countries.forEach(country => {
-        country.addEventListener("click", () => {
-          document.getElementById("info").innerHTML = `
-            <strong>Wybrany kraj</strong><br><br>
-            Ludność: —<br>
-            Ruch: —<br>
-            Ustrój: —<br>
-            Władca: —<br>
-            Waluta: —
-          `;
-        });
+    countries.forEach(country => {
+      country.addEventListener("click", () => {
+        document.getElementById("info").innerHTML = `
+          <strong>Wybrany kraj</strong><br><br>
+          Ludność: —<br>
+          Ruch: —<br>
+          Ustrój: —<br>
+          Władca: —<br>
+          Waluta: —
+        `;
       });
     });
   </script>
