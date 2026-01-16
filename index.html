@@ -22,20 +22,31 @@ svg {
 
 path {
   fill: #666;
-  stroke: #fff;
+  stroke: #ffffff;
   stroke-width: 0.5;
   cursor: pointer;
   transition: fill 0.15s ease;
 }
 
-/* hover TYLKO wizualny */
+/* hover */
 path:hover {
-  fill: red;
+  fill: #5b0000;
+}
+
+/* kliknięty kraj */
+path.active {
+  fill: #5b0000;
 }
 
 /* klik – tylko jeden kraj */
 path.active {
   fill: red;
+}
+html, body {
+  background: white !important;
+  color: black;
+  margin: 0;
+  padding: 0;
 }
 
  </style>
