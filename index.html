@@ -8,61 +8,11 @@
 
   <style>
   
-  body {
-      margin: 0;
-      background: white;
-      font-family: 'Montserrat', sans-serif;
-      text-align: center;
-    }
-
-    h1 {
-      font-size: 72px;
-      margin: 30px 0 10px;
-      letter-spacing: 2px;
-    }
-
-    #container {
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      gap: 30px;
-      padding: 20px;
-    }
-
-    #map {
-      width: 1100px;
-      max-width: 100%;
-    }
-
-    #info {
-      width: 340px;
-      border: 2px solid black;
-      padding: 15px;
-      text-align: left;
-      font-size: 16px;
-      min-height: 200px;
-    }
-
-    svg {
-      width: 1100px;
-      height: auto;
-      user-select: none;
-    }
-
-    .st1 {
-      transition: fill 0.15s;
-      cursor: pointer;
-    }
-
-#map {
-  position: relative;
-  z-index: 1;
+body {
+  background: white;
 }
 
 svg {
-  pointer-events: all;
-}
- svg {
   width: 100%;
   max-width: 1000px;
   height: auto;
@@ -72,15 +22,22 @@ svg {
 
 path {
   fill: #666;
-  stroke: #ffffff;
+  stroke: #fff;
   stroke-width: 0.5;
   cursor: pointer;
-  transition: fill 0.2s ease;
+  transition: fill 0.15s ease;
 }
 
+/* hover TYLKO wizualny */
 path:hover {
   fill: red;
 }
+
+/* klik – tylko jeden kraj */
+path.active {
+  fill: red;
+}
+
  </style>
 </head>
 
@@ -438,28 +395,27 @@ path.active {
 
 <script>
 window.addEventListener("load", () => {
-  const paths = document.querySelectorAll(".st1");
-  console.log("Znalezione path:", paths.length);
+  const countries = document.querySelectorAll("path");
+  const info = document.getElementById("info");
 
-  paths.forEach(path => {
-    path.addEventListener("mouseenter", () => {
-      path.style.fill = "red";
-      document.getElementById("info").innerText = "NAJECHAŁEŚ NA KRAJ";
-    });
+  countries.forEach(country => {
+    country.addEventListener("click", () => {
 
-    path.addEventListener("mouseleave", () => {
-      path.style.fill = "#555";
-    });
+      // usuń zaznaczenie ze wszystkich
+      countries.forEach(c => c.classList.remove("active"));
 
-    path.addEventListener("click", () => {
-      document.getElementById("info").innerText = "KLIK DZIAŁA";
+      // zaznacz tylko kliknięty
+      country.classList.add("active");
+
+      info.innerHTML = `
+        <strong>Wybrany kraj</strong><br><br>
+        Ludność: —<br>
+        Ruch: —<br>
+        Ustrój: —<br>
+        Władca: —<br>
+        Waluta: —
+      `;
     });
   });
-});
-</script>
-
-window.addEventListener("load", () => {
-  const paths = document.querySelectorAll("path");
-  alert("Znalezione path: " + paths.length);
 });
 </script>
