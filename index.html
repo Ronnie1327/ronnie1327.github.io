@@ -57,11 +57,6 @@
     .st1:hover {
       fill: #222 !important;
     }
-.st1 {
-  pointer-events: all;
-  fill: black;
-  stroke: none;
-}
 
 #map {
   position: relative;
@@ -71,7 +66,26 @@
 svg {
   pointer-events: all;
 }
-  </style>
+ svg {
+  width: 100%;
+  max-width: 1000px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+path {
+  fill: #666;
+  stroke: #ffffff;
+  stroke-width: 0.5;
+  cursor: pointer;
+  transition: fill 0.2s ease;
+}
+
+path:hover {
+  fill: red;
+}
+ </style>
 </head>
 
 <body>
