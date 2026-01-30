@@ -19,10 +19,18 @@ svg {
 path {
   fill: #666;
   stroke: #ffffff;
- stroke-width: 1.2;
+  stroke-width: 1.5;
+
+  /* KLUCZOWE LINIE */
+  vector-effect: non-scaling-stroke;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  shape-rendering: geometricPrecision;
+
   cursor: pointer;
   transition: fill 0.15s ease;
 }
+
 
 /* hover */
 path:hover {
